@@ -1,22 +1,57 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const connection = require('./db');
+const connection = require('./config/connection');
+const controllers = require('./controllers');
+const session = require('express-session');
+// const helpers = require('./utils/helpers');
+// const hbs = exphbs.create({ helpers });
 
+// Instantiate the server
 const app = express();
 
-app.use(cors());
+// creating a port for server
+const PORT = process.env.PORT || 4000;
+
+// Sequelize connection
+const sequelize = require('./config/connection');
+// Set up Store
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// Session Object
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+// Express-session Middleware
+app.use(session(sess));
+
+// Express MIDDLEWARE
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, './public'))); //OR 'public'
+
+// Cors
+app.use(cors({ origin: "*" })); //MAYBE THIS INSTEAD app.use(cors());
+
+// Controllers
+app.use(controllers);
+
+
+
+
+
+
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
-
-// // landing page endpoint
-// app.get("/", (req, res) => {
-//     res.send("landing page coming soon");
-// })
-
-// // Signin/signup page endpoint
-// app.get('/login-signup', (req, res) => {
-//     res.send("Signin/signup page coming soon");
-// })
+// // parse requests of content-type - application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 // Todo list page endpoint // replace /tasks with /todo later
 app.get('/tasks', (req, res) => {
@@ -51,7 +86,22 @@ app.delete('/deleteTask/:id', (req, res) => {
 //     res.send("dashboard page coming soon");
 // })
 
+// // landing page endpoint
+// app.get("/", (req, res) => {
+//     res.send("landing page coming soon");
+// })
 
-app.listen(4000, () => {
-    console.log("running on port 4000")
+// // Signin/signup page endpoint
+// app.get('/login-signup', (req, res) => {
+//     res.send("Signin/signup page coming soon");
+// })
+
+
+
+
+
+// Sync Sequelize tables if true, then start server connection
+sequelize.sync({force: false})
+.then(() => {
+    app.listen(PORT, () => console.log(`Now listening on Port ${PORT}!`));
 });

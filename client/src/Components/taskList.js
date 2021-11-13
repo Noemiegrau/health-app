@@ -53,7 +53,6 @@ class TaskList extends React.Component {
                             <div className="extra content">
                                 <div className="ui two buttons">
                                     <div className="ui two buttons">
-                                        <button className="ui basic green button">Done</button>
                                         <button className="ui basic red button" onClick={() => this.onDeleteClick(task.id)}>Delete</button>
                                     </div>
                                 </div>
