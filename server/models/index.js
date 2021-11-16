@@ -1,37 +1,73 @@
-// IMPORT ALL MODELS
-const User = require('./User');
-const Task = require('./Task');
-const List = require('./List');
+const dbConfig = require("../config/db.config.js");
 
-// CREATE ASSOCIATIONS
-User.hasMany(List, {
-    foreignKey: 'user_id'
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
+  operatorsAliases: false,
+
+  pool: {
+    max: dbConfig.pool.max,
+    min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.idle
+  }
 });
 
-// List belongs to one user
-List.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+const db = {};
 
-User.hasMany(Task, {
-    foreignKey: 'user_id'
-});
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-// List has many tasks
-List.hasMany(Task, {
-    foreignKey: 'list_id'
-});
+db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
+db.tasks = require("./task.model.js")(sequelize, Sequelize);
 
-// Task belongs to one user
-Task.belongsTo(User, {
-    foreignKey: 'user_id',
-    onDelete: 'SET NULL'
-});
+module.exports = db;
 
-// Task belongs to List
-Task.belongsTo(List, {
-    foreignKey: 'list_id',
-    onDelete: 'SET NULL'
-});
 
-module.exports = { User, Task, List };
+
+
+
+
+
+
+
+
+
+// // IMPORT ALL MODELS
+// const User = require('./User');
+// const Task = require('./Task');
+// const List = require('./List');
+
+// // CREATE ASSOCIATIONS
+// User.hasMany(List, {
+//     foreignKey: 'user_id'
+// });
+
+// // List belongs to one user
+// List.belongsTo(User, {
+//     foreignKey: 'user_id'
+// });
+
+// User.hasMany(Task, {
+//     foreignKey: 'user_id'
+// });
+
+// // List has many tasks
+// List.hasMany(Task, {
+//     foreignKey: 'list_id'
+// });
+
+// // Task belongs to one user
+// Task.belongsTo(User, {
+//     foreignKey: 'user_id',
+//     onDelete: 'SET NULL'
+// });
+
+// // Task belongs to List
+// Task.belongsTo(List, {
+//     foreignKey: 'list_id',
+//     onDelete: 'SET NULL'
+// });
+
+// module.exports = { User, Task, List };
