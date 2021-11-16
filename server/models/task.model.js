@@ -35,9 +35,6 @@ module.exports = (sequelize, Sequelize) => {
     //       model: 'list',
     //       key: 'id'
     //     }
-    //   },
-    //   published: {
-    //     type: Sequelize.BOOLEAN
     //   }
     });
   

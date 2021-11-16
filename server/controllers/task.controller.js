@@ -16,8 +16,7 @@ exports.create = (req, res) => {
     const task = {
       title: req.body.title,
       description: req.body.description,
-      // due_date: req.body.due_date,
-      published: req.body.published ? req.body.published : false
+      due_date: req.body.due_date
     };
   
     // Save Task in the database
@@ -32,9 +31,6 @@ exports.create = (req, res) => {
         });
       });
   };
-
-
-
 
 
 // RETRIEVE ALL Tasks from the database.
@@ -53,11 +49,6 @@ exports.findAll = (req, res) => {
       });
     });
 };
-
-
-
-
-
 
 
 // FIND A SINGLE Task with an id
@@ -80,10 +71,6 @@ exports.findOne = (req, res) => {
         });
       });
   };
-
-
-
-
 
 
 // UPDATE a Task by the id in the request
@@ -112,12 +99,6 @@ exports.update = (req, res) => {
   };
 
 
-
-
-
-
-
-
 // DELETE a Task with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
@@ -144,13 +125,7 @@ exports.delete = (req, res) => {
   };
 
 
-
-
-
-
-
-
-// DELETE ALL Tasks from the database.
+  // DELETE ALL Tasks from the database.
 exports.deleteAll = (req, res) => {
     Task.destroy({
     where: {},
@@ -166,12 +141,6 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-
-
-
-
-
-
 
 
 // FIND ALL Due Date Tasks

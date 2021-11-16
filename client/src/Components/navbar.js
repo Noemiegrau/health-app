@@ -6,22 +6,22 @@ const Navbar = () => {
   return (
     
     <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/tutorials"} className="navbar-brand">
-            TO-DO List
+        <Link to={"/"} className="navbar-brand">
+            LOGO
         </Link>
         <div className="navbar-nav mr-auto">
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
                 <Link to={"/tutorials"} className="nav-link">
                     Tutorials
                 </Link>
-            </li>
+            </li>*/}
             
             <li className="nav-item">
-                <Link to={"/add-tutorial"} className="nav-link">
-                    Add Tutorial
+                <Link to={"/dashboard"} className="nav-link">
+                Dashboard
                 </Link>
-            </li>
+            </li> 
 
             <li className="nav-item">
                 <Link to={"/tasks"} className="nav-link">
@@ -30,10 +30,11 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-                <Link to={"/add-task"} className="nav-link">
-                    Add Task
+                <Link to={"/logout"} className="nav-link">
+                    Logout
                 </Link>
             </li>
+            LOGOUT
         </div>
     </nav>
 

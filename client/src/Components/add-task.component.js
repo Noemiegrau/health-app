@@ -8,7 +8,6 @@ const AddTask = () => {
     title: "",
     description: "",
     due_date: ""
-    // published: false
   };
   const [task, setTask] = useState(initialTaskState);
   const [submitted, setSubmitted] = useState(false);
@@ -38,7 +37,8 @@ const AddTask = () => {
       })
       .catch(e => {
         console.log(e);
-      });
+      })
+      .then(window.location.reload(false));
   };
 
   const newTask = () => {
@@ -46,9 +46,10 @@ const AddTask = () => {
     setSubmitted(false);
   };
 
+
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
     <div className="submit-form">
       {submitted ? (
         <div>
@@ -59,6 +60,7 @@ const AddTask = () => {
         </div>
       ) : (
         <div>
+          <h4>Add a task</h4>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input

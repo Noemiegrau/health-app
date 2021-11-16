@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import TaskDataService from "../services/task.service.js";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar.js";
+import AddTask from "./add-task.component.js";
 
-const TasksList = () => {
+const TasksList = props => {
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
+
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     retrieveTasks();
@@ -38,6 +41,29 @@ const TasksList = () => {
   const setActiveTask = (task, index) => {
     setCurrentTask(task);
     setCurrentIndex(index);
+  };
+
+  const updateTask = () => {
+    TaskDataService.update(currentTask.id, currentTask)
+      .then(response => {
+        console.log(response.data);
+        setMessage("The task was updated successfully!");
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const deleteTask = () => {
+    TaskDataService.delete(currentTask.id)
+      .then(response => {
+        console.log(response.data);
+        props.history.push("/tasks");
+      })
+      .catch(e => {
+        console.log(e);
+      })
+      .then(window.location.reload(false));
   };
 
   const removeAllTasks = () => {
@@ -99,7 +125,24 @@ const TasksList = () => {
                 onClick={() => setActiveTask(task, index)}
                 key={index}
               >
+              <div>
+                <label>
+                  <strong>Title:</strong>
+                </label>{" "}
                 {task.title}
+              </div>
+              <div>
+                <label>
+                  <strong>Description:</strong>
+                </label>{" "}
+                {task.description}
+              </div>
+              <div>
+                <label>
+                  <strong>Due Date:</strong>
+                </label>{" "}
+                {task.due_date}
+              </div>
               </li>
             ))}
         </ul>
@@ -114,7 +157,10 @@ const TasksList = () => {
       <div className="col-md-6">
         {currentTask ? (
           <div>
-            <h4>Task</h4>
+            <button className="" onClick={deleteTask}>
+              Delete
+            </button>
+            {/* <h4>Task</h4>
             <div>
               <label>
                 <strong>Title:</strong>
@@ -128,11 +174,11 @@ const TasksList = () => {
               {currentTask.description}
             </div>
             <div>
-              <label>
-                <strong>Due Date:</strong>
-              </label>{" "}
-              {currentTask.due_date}
-            </div>
+                <label>
+                  <strong>Due Date:</strong>
+                </label>{" "}
+                {task.due_date}
+              </div>*/}
             {/* <div>
               <label>
                 <strong>Status:</strong>
@@ -140,19 +186,19 @@ const TasksList = () => {
               {currentTask.published ? "Published" : "Pending"}
             </div> */}
 
-            <Link
-              to={"/tasks/" + currentTask.id}
-              className="badge badge-warning"
-            >
+            <button onClick={updateTask}>
               Edit
-            </Link>
+              </button>
           </div>
         ) : (
           <div>
             <br />
-            <p>Please click on a Task...</p>
+            <p>Click on a Task to delete or modify/update...</p>
           </div>
+
         )}
+         <br />
+        <AddTask />
       </div>
     </div>
     </div>

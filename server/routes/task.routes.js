@@ -10,7 +10,7 @@ module.exports = app => {
     router.get("/", tasks.findAll);
   
     // Retrieve all due date Tasks
-    router.get("/due-date", tasks.findAllDueDate);
+    router.get("/due_date", tasks.findAllDueDate);
   
     // Retrieve a single Task with id
     router.get("/:id", tasks.findOne);

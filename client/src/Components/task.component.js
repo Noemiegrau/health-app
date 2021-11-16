@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TaskDataService from "../services/task.service.js";
+import Navbar from './navbar';
 
 const Task = props => {
   const initialTaskState = {
@@ -7,7 +8,6 @@ const Task = props => {
     title: "",
     description: "",
     due_date: ""
-    // published: false
   };
   const [currentTask, setCurrentTask] = useState(initialTaskState);
   const [message, setMessage] = useState("");
@@ -37,6 +37,7 @@ const Task = props => {
   //     id: currentTask.id,
   //     title: currentTask.title,
   //     description: currentTask.description,
+  //     due_date: currentTask.due_date,
   //     published: status
   //   };
 
@@ -62,7 +63,7 @@ const Task = props => {
   };
 
   const deleteTask = () => {
-    TaskDataService.remove(currentTask.id)
+    TaskDataService.delete(currentTask.id)
       .then(response => {
         console.log(response.data);
         props.history.push("/tasks");
@@ -73,7 +74,8 @@ const Task = props => {
   };
 
   return (
-    
+    <div>
+      <Navbar />
     <div>
       {currentTask ? (
         <div className="edit-form">
@@ -101,7 +103,6 @@ const Task = props => {
                 onChange={handleInputChange}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="due_date">Due Date</label>
               <input
@@ -113,30 +114,6 @@ const Task = props => {
                 onChange={handleInputChange}
               />
             </div>
-
-            {/* <div className="form-group">
-              <label>
-                <strong>Status:</strong>
-              </label>
-              {currentTask.published ? "Published" : "Pending"}
-            </div> */}
-          </form>
-
-          {/* {currentTask.published ? (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(false)}
-            >
-              UnPublish
-            </button>
-          ) : (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updatePublished(true)}
-            >
-              Publish
-            </button>
-          )} */}
 
           <button className="badge badge-danger mr-2" onClick={deleteTask}>
             Delete
@@ -150,6 +127,7 @@ const Task = props => {
             Update
           </button>
           <p>{message}</p>
+          </form>
         </div>
       ) : (
         <div>
@@ -158,7 +136,7 @@ const Task = props => {
         </div>
       )}
     </div>
-
+    </div>
   );
 };
 
