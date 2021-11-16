@@ -93,6 +93,7 @@ const TasksList = props => {
     <Navbar />
     <div className="list row">
       <div className="col-md-8">
+      <br/>
         <div className="input-group mb-3">
           <input
             type="text"
@@ -151,7 +152,7 @@ const TasksList = props => {
           className="m-3 btn btn-sm btn-danger"
           onClick={removeAllTasks}
         >
-          Remove All
+          Delete All
         </button>
       </div>
       <div className="col-md-6">
