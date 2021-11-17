@@ -13,18 +13,19 @@ class UserDataService {
     return http.post("/users", data);
   }
 
-  // update(id, data) {
-  //   return http.put(`/users/${id}`, data);
-  // }
+  update(id, data) {
+    return http.put(`/users/${id}`, data);
+  }
 
   delete(id) {
     return http.delete(`/users/${id}`);
   }
 
-  login(data) {
-    // return http.post("/users/login");
+  login() {
+    // login(data) {
+    return http.post("/users/login");
     // return http.post("/users", data);
-    return http.post("/users/login", data);
+    // return http.post("/users/login", data);
   }
 
   logout() {

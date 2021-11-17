@@ -86,7 +86,7 @@ exports.create = (req, res) => {
       });
 };
 
-// DO THE LOGIN ROUTE (LOGIN)
+// LOGIN route
 exports.login = (req, res) => {
   User.findOne({
     where: {
@@ -94,33 +94,49 @@ exports.login = (req, res) => {
     }
   }).then(data => {
     if (!data) {
-      res.status(400).json({ message: 'No staff member with that email address!' });
+      res.status(400).json({ message: 'No user with that email address!' });
       return;
     }
 
-    const validPassword = data.checkPassword(req.body.password);
+    const checkPassword = data.validPassword(req.body.password);
 
-    if (!validPassword) {
+    if (!checkPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
 
-    // req.session.save(() => {
       // declare session variables
       req.session.save(() => {
-        req.session.staff_id = data.id;
-        // req.session.user_id = data.id; ??
+        req.session.user_id = data.id;
         req.session.email = data.email;
         req.session.loggedIn = true;
 
-      // res.json({ user: data, message: 'You are now logged in!' });
-      res.json({ staff: data, message: 'You are now logged in!' });
+      res.json({ user: data, message: 'You are now logged in!' });
       });
     });
-}
+};
 
-// DO THE UPDATE PROFILE ROUTE (PUT)
-
+// UPDATE a User with the specified id in the request
+exports.update = (req, res) => {
+  // pass in req.body instead of only updating what's passed through
+  User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(data => {
+      if (!data) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+};
 
 // DELETE a User with the specified id in the request
 exports.delete = (req, res) => {
@@ -147,7 +163,7 @@ exports.delete = (req, res) => {
       });
   };
 
-// DO THE LOGOUT ROUTE (LOGOUT)
+// LOGOUT route
 exports.logout = (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

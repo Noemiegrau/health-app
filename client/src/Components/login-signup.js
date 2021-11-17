@@ -3,21 +3,58 @@ import UserDataService from "../services/user.service.js";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar.js";
 
+const required = value => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
+
 const LoginSignup = () => {
     const initialUserState = {
         id: null,
-        username: "",
         email: "",
         password: ""
       };
-
       const [user, setUser] = useState(initialUserState);
       const [submitted, setSubmitted] = useState(false);
-
+    
       const handleInputChange = event => {
         const { name, value } = event.target;
         setUser({ ...user, [name]: value });
       };
+
+    //   const handleLogin = (e) => {
+    //     // e.preventDefault();
+    //     var data = {
+    //         email: user.email,
+    //         password: user.password,
+    //     }
+
+    //     UserDataService.login()
+    //     .then(response => {
+    //         setUser({
+    //           id: response.data.id,
+    //           email: response.data.email,
+    //           password: response.data.password
+    //         });
+    //         setSubmitted(true);
+    //         console.log(response.data);
+    //       })
+    //       .catch(e => {
+    //         console.log(e);
+    //       })
+    //       .then(window.location.reload(false));
+    //   };
+
+
+
+
+
+
 
       const saveUser = () => {
         var data = {
@@ -65,7 +102,8 @@ const LoginSignup = () => {
                             <input type="password" id="password-login" className="form-control" placeholder="Your Password *" />
                         </div>
                         <div className="form-group">
-                            <input id="loginpagebutton" type="submit" onclick="handleSubmit()" className="btnSubmit" value="Login" />
+                            <input id="loginpagebutton" type="submit" className="btnSubmit" value="Login" />
+                            {/* <input id="loginpagebutton" type="submit" onClick={handleLogin} className="btnSubmit" value="Login" /> */}
                         </div>
                     </form>
                 </div>
@@ -86,6 +124,7 @@ const LoginSignup = () => {
                             type="text" 
                             id="username" 
                             className="form-control" 
+                            validations={[required]}
                             required
                             value={user.username}
                             onChange={handleInputChange}
@@ -97,6 +136,7 @@ const LoginSignup = () => {
                             type="text" 
                             id="email" 
                             className="form-control" 
+                            validations={[required]}
                             required
                             value={user.email}
                             onChange={handleInputChange}
@@ -108,6 +148,7 @@ const LoginSignup = () => {
                             type="password" 
                             id="password" 
                             className="form-control" 
+                            validations={[required]}
                             required
                             value={user.password}
                             onChange={handleInputChange}

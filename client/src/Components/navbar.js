@@ -10,13 +10,6 @@ const Navbar = () => {
             LOGO
         </Link>
         <div className="navbar-nav mr-auto">
-
-            {/* <li className="nav-item">
-                <Link to={"/tutorials"} className="nav-link">
-                    Tutorials
-                </Link>
-            </li>*/}
-            
             <li className="nav-item">
                 <Link to={"/dashboard"} className="nav-link">
                 Dashboard
@@ -34,7 +27,6 @@ const Navbar = () => {
                     Logout
                 </Link>
             </li>
-            LOGOUT
         </div>
     </nav>
 
