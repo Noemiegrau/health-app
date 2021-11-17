@@ -1,32 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import '../style/navbar.scss'
+import '../style/index.scss'
 
 const Navbar = () => {
 
   return (
     
-    <nav className="navbar navbar-expand navbar-dark bg-dark">
+    <nav className="navbar-container">
+
+{/*  
         <Link to={"/"} className="navbar-brand">
             LOGO
-        </Link>
-        <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-                <Link to={"/dashboard"} className="nav-link">
-                Dashboard
+        </Link> */}
+        <div className="link-container">
+                <Link className="navbar-link" to="/dashboard"><div className="animated-bar" /><p className="link">dashboard</p>
                 </Link>
-            </li> 
-
-            <li className="nav-item">
-                <Link to={"/tasks"} className="nav-link">
-                    Tasks
+                <Link className="navbar-link" to="/tasks"><div className="animated-bar" /><p className="link">tasks</p>
                 </Link>
-            </li>
-
-            <li className="nav-item">
-                <Link to={"/logout"} className="nav-link">
-                    Logout
+                <Link className="navbar-link" to="/logout"><div className="animated-bar" /><p className="link">logout</p>
                 </Link>
-            </li>
+            
         </div>
     </nav>
 

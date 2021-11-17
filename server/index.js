@@ -24,6 +24,14 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// // new version of bodyparser //
+// app.use(express.json());
+// app.use(express.urlencoded({ 
+//   extended: true
+//  }));
+// app.use(express.static('./public'));
+
 const db = require("./models");
 db.sequelize.sync({ force: false }).then(() => {
     console.log("Drop and re-sync db.");
@@ -98,33 +106,33 @@ app.listen(PORT, () => {
 
 
 
-// Todo list page endpoint // replace /tasks with /todo later
-app.get('/tasks', (req, res) => {
-    const TASK_QUERY = `select * from health_app.task`;
-    connection.query(TASK_QUERY, (err, response) => {
-        if (err) console.log(err)
-        else res.send(response);
-    })
-})
+// // Todo list page endpoint // replace /tasks with /todo later
+// app.get('/tasks', (req, res) => {
+//     const TASK_QUERY = `select * from health_app.task`;
+//     connection.query(TASK_QUERY, (err, response) => {
+//         if (err) console.log(err)
+//         else res.send(response);
+//     })
+// })
 
-// POST Task
-app.post('/addTask', (req, res) => {
-    const ADD_QUERY = `insert into health_app.task (task_name) values ('${req.body.task}')`;
-    connection.query(ADD_QUERY, (err) => {
-        if (err) console.log(err)
-        else res.send("task has been added");
-    })
-})
+// // POST Task
+// app.post('/addTask', (req, res) => {
+//     const ADD_QUERY = `insert into health_app.task (task_name) values ('${req.body.task}')`;
+//     connection.query(ADD_QUERY, (err) => {
+//         if (err) console.log(err)
+//         else res.send("task has been added");
+//     })
+// })
  
-// DELETE Task
-app.delete('/deleteTask/:id', (req, res) => {
-    console.log(req.params.id);
-    const DELETE_QUERY = `DELETE FROM health_app.task WHERE (id=${req.params.id})`
-    connection.query(DELETE_QUERY, (err, res) => {
-        if (err) console.log(err)
-        // else res.send("task has been deleted");
-    })
-})
+// // DELETE Task
+// app.delete('/deleteTask/:id', (req, res) => {
+//     console.log(req.params.id);
+//     const DELETE_QUERY = `DELETE FROM health_app.task WHERE (id=${req.params.id})`
+//     connection.query(DELETE_QUERY, (err, res) => {
+//         if (err) console.log(err)
+//         // else res.send("task has been deleted");
+//     })
+// })
 
 
 
