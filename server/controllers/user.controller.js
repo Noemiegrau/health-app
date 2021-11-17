@@ -69,9 +69,8 @@ exports.create = (req, res) => {
         // declare session variables
         req.session.save(() => {
           req.session.user_id = data.id;
-          // req.session.user_id = data.id; ??
           req.session.email = data.email;
-          req.session.loggedIn = true;
+          req.session.loggedIn = true; // IMPORTANT: THIS MEAN AFTER THE USER CREATES THEIR ACCOUNT THEY ARE AUTOMATICALLY CONSIDERED LOGGED IN
     
           res.json(data);
         })
@@ -86,6 +85,41 @@ exports.create = (req, res) => {
         });
       });
 };
+
+// DO THE LOGIN ROUTE (LOGIN)
+exports.login = (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(data => {
+    if (!data) {
+      res.status(400).json({ message: 'No staff member with that email address!' });
+      return;
+    }
+
+    const validPassword = data.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    // req.session.save(() => {
+      // declare session variables
+      req.session.save(() => {
+        req.session.staff_id = data.id;
+        // req.session.user_id = data.id; ??
+        req.session.email = data.email;
+        req.session.loggedIn = true;
+
+      // res.json({ user: data, message: 'You are now logged in!' });
+      res.json({ staff: data, message: 'You are now logged in!' });
+      });
+    });
+}
+
+// DO THE UPDATE PROFILE ROUTE (PUT)
 
 
 // DELETE a User with the specified id in the request
@@ -113,5 +147,13 @@ exports.delete = (req, res) => {
       });
   };
 
-
-
+// DO THE LOGOUT ROUTE (LOGOUT)
+exports.logout = (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+};
