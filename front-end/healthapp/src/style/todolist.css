@@ -1,0 +1,280 @@
+* {
+  font-family: 'Heebo', sans-serif;
+  color: #382b2b;
+}
+
+.main-container {
+  width: 80%;
+  height: 300vh;
+  margin: 70px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.todo-container {
+  border-radius: 20px;
+  width: 80%;
+  min-height: 600px;
+  background-color: rgba(212, 212, 212, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.info-top {
+  margin-bottom: 40px;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.363);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.nb-tasks {
+  position: absolute;
+  margin-top: 67px;
+  margin-left: 13%;
+  font-size: 1.5rem;
+}
+
+.date {
+  color: #382b2b;
+  opacity: 0.1;
+  word-break: normal;
+  width: 385px;
+  height: 100px;
+  margin-top: 44px;
+  font-size: 39px;
+  margin-right: 23px;
+}
+
+.info-top-left {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 30%;
+}
+
+.btn-groups {
+  width: 70%;
+  height: 100%;
+}
+
+.btn-name {
+  font-size: 14px;
+}
+
+.btn-top {
+  width: 33.3%;
+  border: none;
+  overflow: hidden;
+  height: 100%;
+  font-size: 1rem;
+  -webkit-transition: 0.8s ease;
+  transition: 0.8s ease;
+}
+
+.btn-top:hover {
+  background-color: #e0b8a1;
+  -webkit-box-shadow: 0px 5px 40px #e0b8a1;
+          box-shadow: 0px 5px 40px #e0b8a1;
+  cursor: pointer;
+}
+
+.btn-top:hover .btn-name {
+  position: relative;
+  -webkit-animation: btnClicked 1s;
+          animation: btnClicked 1s;
+}
+
+.btn-top:last-of-type {
+  border-radius: 0px 20px 20px 0px;
+}
+
+.active:hover {
+  background-color: #c7dee6;
+  -webkit-box-shadow: 0px 5px 40px #c7dee6;
+          box-shadow: 0px 5px 40px #c7dee6;
+  cursor: pointer;
+}
+
+.active:hover .btn-name {
+  position: relative;
+  -webkit-animation: btnClicked 1s;
+          animation: btnClicked 1s;
+}
+
+.completed:hover {
+  background-color: #b4d39b;
+  -webkit-box-shadow: 0px 5px 40px #b4d39b;
+          box-shadow: 0px 5px 40px #b4d39b;
+  cursor: pointer;
+}
+
+.completed:hover .btn-name {
+  position: relative;
+  -webkit-animation: btnClicked 1s;
+          animation: btnClicked 1s;
+}
+
+@-webkit-keyframes btnClicked {
+  0% {
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes btnClicked {
+  0% {
+    -webkit-transform: translateY(-150px);
+            transform: translateY(-150px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+.add-item-container {
+  margin-left: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+}
+
+.input-task {
+  margin-top: 20px;
+  width: 300px;
+  border: none;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.input-task:focus {
+  outline: none;
+}
+
+.bar-under-input {
+  width: 85%;
+  height: 2px;
+  background-color: white;
+}
+
+.btn-added-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.added-tag-anim {
+  font-size: 13px;
+  z-index: 9;
+  margin-top: 12px;
+}
+
+.btn-plus {
+  z-index: 10;
+  border: none;
+  width: 70px;
+  height: 40px;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  cursor: pointer;
+}
+
+.btn-plus:hover + .added-tag-anim {
+  -webkit-animation: added 4s;
+          animation: added 4s;
+}
+
+@-webkit-keyframes added {
+  0% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: translateX(80px);
+            transform: translateX(80px);
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes added {
+  0% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: translateX(80px);
+            transform: translateX(80px);
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.list-container {
+  margin-bottom: 40px;
+  width: 100%;
+  height: 50vh;
+  background-color: rgba(255, 255, 255, 0.363);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=todolist.css.map */
