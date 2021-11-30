@@ -21,10 +21,10 @@ class UserDataService {
     return http.delete(`/users/${id}`);
   }
 
-  login() {
-    // login(data) {
-    return http.post("/users/login");
-    // return http.post("/users", data);
+  // login() {
+  login(data) {
+    // return http.post("/users/login");
+     return http.post("/users", data);
     // return http.post("/users/login", data);
   }
 

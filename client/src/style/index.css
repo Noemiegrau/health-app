@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Heebo&display=swap");
+@use 'mixins';
+@use 'colors';
+@use 'about';
+@use 'home';
+@use 'login';
+@use 'navbar';
+@use 'todolist';
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: -webkit-gradient(linear, right top, left bottom, from(#a6c090), to(#e4b396)) fixed;
+  background: linear-gradient(to left bottom, #a6c090, #e4b396) fixed;
+}
+/*# sourceMappingURL=index.css.map */

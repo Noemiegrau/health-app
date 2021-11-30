@@ -1,0 +1,117 @@
+.navbar-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  top: 0;
+  -webkit-animation: navbar 1.5s;
+          animation: navbar 1.5s;
+}
+
+@-webkit-keyframes navbar {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes navbar {
+  0% {
+    -webkit-transform: translateY(-50px);
+            transform: translateY(-50px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+.logo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.link-container {
+  width: 80%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #3f3030;
+  text-transform: uppercase;
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.30em;
+}
+
+.link {
+  z-index: 10;
+  margin-top: 35px;
+  position: absolute;
+  font-size: 12px;
+}
+
+.animated-bar {
+  z-index: 9;
+  width: 60%;
+  height: 0.1em;
+  background-color: white;
+  margin-bottom: 10%;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: ease 1s;
+  transition: ease 1s;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  margin-top: 42px;
+}
+
+.navbar-link:hover .animated-bar {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+.navbar-logo {
+  width: 50px;
+  height: 50px;
+}
+
+.social-media-icons {
+  height: 100px;
+  width: 100px;
+  margin: auto;
+}
+/*# sourceMappingURL=navbar.css.map */
