@@ -1,0 +1,202 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css');
+
+$color-primary:#e0b8a1;
+$color-secondary: #b4d39b;
+$color-tertiary: rgb(199, 222, 230);
+$font-color: rgb(56, 43, 43);
+///
+$border-radius: 20px;
+
+* {
+    font-family: 'Heebo', sans-serif;
+    color: $font-color;
+}
+
+.container {
+    // display: flex;
+    margin-bottom: 50px;
+    width: 100%;
+    // flex-direction: column;
+    align-items: center;
+}
+
+.selection-top-container {
+    width: 60%;
+    margin: 0px auto 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+.animated-arrow {
+    font-size: 2.7rem;
+    z-index: 20;
+    position: absolute;
+    transition: all 0.5s ease;  
+    top: 10px; 
+    left: -10px;
+}
+
+.sign-log-container {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bolder;
+}
+
+input[type="checkbox"] {
+    position: relative; 
+    width: 60px;
+    height: 23px;
+    margin-top: 20px;
+    appearance: none;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    outline: none;
+    border-radius: 20px;
+    transition: 0.5s;
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+    
+    
+}
+
+// input:checked[type="checkbox"]  {
+//     background: $color-primary; 
+  
+// }
+
+input[type="checkbox"]:before {
+    content: "\f0a9"; 
+    font-family: "Font Awesome 5 Free";
+    font-size: 30px;
+    font-weight: 900;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: -3px; 
+    left: -4px;
+    transition: .7s;
+    transform: rotate(220deg);
+   
+}
+
+
+input:checked[type="checkbox"]:before {
+    left: 33px;
+    transform: rotate(-40deg);
+}
+
+.login-container {
+    content: '';
+    width: 50%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.363);
+    display: flex;
+    flex-direction: column;
+    border-radius: $border-radius;
+    position: relative;
+    margin: 30px auto 0 auto;
+    align-items: center;
+    transition: all 2s ease-out; 
+}
+
+.user-icon {
+    font-size: 3rem;
+}
+
+.circle-user {
+    width: 80px;
+    height: 80px;
+    background-color: $color-primary;
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -40px;
+    
+}
+
+.input-container {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input {
+    &:first-child {
+        margin: 0;
+    }
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 10px white;
+    }
+    width: 100%;
+    margin-top: 25px;
+    border: 3px solid white;
+    background-color: rgba(255, 255, 255, 0);
+    height: 35px;
+    padding-left: 2%;
+    font-size: 1rem;
+}
+
+
+.submit-button {
+    margin-top: 25px;
+    width: 80%;
+    height: 35px;
+    border: none;
+    background-color: $color-primary;
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 0.25rem;
+}
+
+.forgot-pw-question {
+    margin: 25px 0;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+// toggle function
+
+.rotate-animation {
+    transition: 1s ease;
+    transform: rotateY(180deg);
+}
+
+.rotate-animation-reverse {
+    transition: 1s ease;
+    transform: rotateY(0);
+}
+
+.toggle-login-container, .toggle-signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.toggle-signup-container {
+    transform: rotateY(180deg);
+    transition: ease 0.1s; 
+    margin-bottom: 30px;
+    
+}
+
+.toggle-login-container-hidden, .toggle-signup-container-hidden {
+    display: none;
+}
+
+.title-container {
+    margin: 0 auto;
+    font-weight: bolder;
+    font-size: 25px;
+}

@@ -16,7 +16,7 @@ $border-radius: 20px;
 
 .main-container {
     width: 80%;
-    height: 300vh;
+    height: 100vh;
     margin: 70px auto;
     display: flex;
     justify-content: center;
@@ -46,20 +46,17 @@ $border-radius: 20px;
 
 .nb-tasks {
     position: absolute;
-    margin-top: 67px;
-    margin-left: 13%;
-    font-size: 1.5rem;
+    margin-top: 5%;
+    font-size: 1rem;
 }
 
  .date {
     color: $font-color;
     opacity: 0.1;
     word-break: normal;
-    width: 385px;
-    height: 100px;
-    margin-top: 44px;
-    font-size: 39px;
-    margin-right: 23px;
+    width: fit-content;
+    height: fit-content;
+    font-size: 2.7rem;
  }
 
 .info-top-left {
@@ -67,11 +64,14 @@ $border-radius: 20px;
     display: flex;
     flex-direction: column;
     width: 30%;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-groups {
     width: 70%;
     height: 100%;
+    display: flex;
 }
 
 .btn-name {
@@ -139,7 +139,6 @@ $border-radius: 20px;
 
 
 .add-item-container {
-    margin-left: 20px;
     display: flex;
     align-items: center;
     margin-bottom: 40px;
@@ -150,11 +149,37 @@ $border-radius: 20px;
         outline: none;
     }
     margin-top: 20px;
-    width: 300px;
+    width:100%;
     border: none;
     font-size: 14px;
     background-color: rgba(255, 255, 255, 0);
 }
+
+.input-task-date {
+    margin-top: 0;
+}
+
+.due-date-title {
+    margin-right: 15%;
+}
+
+.input-task-date {
+    width: 40%;
+}
+
+.add-item-container {
+    display: flex;
+}
+
+.add-item {
+    width: 50%;
+}
+
+.due-date-container {
+    display: flex;
+}
+
+
 
 .bar-under-input {
     width: 85%;
@@ -162,10 +187,6 @@ $border-radius: 20px;
     background-color: white ;
 }
 
-.btn-added-container {
-    display: flex;
-    justify-content: center;
-}
 
 .added-tag-anim {
     font-size: 13px;
@@ -216,10 +237,114 @@ $border-radius: 20px;
 .list-container {
     margin-bottom: 40px;
     width: 100%;
-    height: 50vh;
+    height: fit-content;
     background-color: rgba(255, 255, 255, 0.363);
     display: flex;
-    border-radius: $border-radius;
-    align-items: center;
-    
+    border-radius: $border-radius; 
+    flex-direction: column;
 }
+
+.todolist-single-item {
+    &:first-child {
+        border-radius: $border-radius $border-radius 0px 0px ;
+    }
+    &:last-child {
+        border-radius:  0px 0px $border-radius $border-radius ;
+    }
+    &:only-child {
+        border-radius: $border-radius ;
+    }
+    &:hover {
+        .trash-btn {
+            opacity: 1;
+        }
+    }
+    width: 100%;
+    height: 5rem;
+    background-color: white;
+    overflow: hidden;
+    display: flex; 
+}
+
+.trash-btn {
+    margin-left: 40%;
+    opacity: 0;
+    transition: ease 0.2s;
+}
+
+.left-single-item, .right-single-item {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 3%;
+}
+
+
+.right-single-item { 
+    width: 20%;
+    align-items: center; 
+}
+
+.checkbox-container {
+    width: 20%;
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+
+
+.button-item {
+    width: 17px;
+    height: 17px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.single-item-name {
+    font-weight: 700;
+}
+
+
+.single-item-description {
+    font-size: 0.8rem;
+}
+
+.single-item-name-box, .single-item-description-box {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
+.line-through {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    position: absolute;
+    margin-top: -10px;
+    opacity: 1;
+    &:hover {
+        animation: linesthrough 1s forwards;
+    }
+ 
+}
+
+@keyframes  linesthrough  {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/// checked-item
+
+

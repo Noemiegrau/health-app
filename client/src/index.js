@@ -6,7 +6,6 @@ import About from './pages/About'
 import Login from './pages/Login'
 import Todolist from './pages/Todolist'
 import Navbar from './Components/Navbar'
-
 import Footer from './Components/Footer'
 import './style/index.scss'
 
