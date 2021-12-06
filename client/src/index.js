@@ -5,7 +5,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
 import Todolist from './pages/Todolist'
-import Navbar from './Components/Navbar'
+import LoginSignup from './Components/login-signup'
+// import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import './style/index.scss'
 
@@ -13,12 +14,13 @@ import './style/index.scss'
 ReactDOM.render( 
   
   <Router>
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />  
       <Route path="/todolist" element={<Todolist />} />  
+      <Route path="/login-signup" element={<LoginSignup />} />
     </Routes>
     <Footer /> 
   </Router>,
