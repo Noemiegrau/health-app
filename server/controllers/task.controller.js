@@ -16,7 +16,9 @@ exports.create = (req, res) => {
     const task = {
       title: req.body.title,
       description: req.body.description,
-      due_date: req.body.due_date
+      due_date: req.body.due_date,
+      // AJOUT DE BOOLEAN COMPLETE ICI ?
+      // complete: req.body.complete
     };
   
     // Save Task in the database

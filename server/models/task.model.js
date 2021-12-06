@@ -27,7 +27,13 @@ module.exports = (sequelize, Sequelize) => {
         validate: {
             len: [1]
           }
-    }
+      },
+      // AJOUT DE BOOLEAN COMPLETE ICI 
+      complete: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      }
     //   list_id: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false,
@@ -45,18 +51,18 @@ module.exports = (sequelize, Sequelize) => {
 
 
 
-//   module.exports = (sequelize, Sequelize) => {
-//     const Task = sequelize.define("task", {
-//       title: {
-//         type: Sequelize.STRING
-//       },
-//       description: {
-//         type: Sequelize.STRING
-//       },
-//       published: {
-//         type: Sequelize.BOOLEAN
-//       }
-//     });
+  // module.exports = (sequelize, Sequelize) => {
+  //   const Task = sequelize.define("task", {
+  //     title: {
+  //       type: Sequelize.STRING
+  //     },
+  //     description: {
+  //       type: Sequelize.STRING
+  //     },
+  //     published: {
+  //       type: Sequelize.BOOLEAN
+  //     }
+  //   });
   
 //     return Task;
 //   };
