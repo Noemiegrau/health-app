@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserDataService from "../services/user.service.js";
 import { Link } from "react-router-dom";
-import Navbar from "./navbar.js";
+// import Navbar from "./navbar.js";
 
 const required = value => {
     if (!value) {
@@ -16,6 +16,7 @@ const required = value => {
 const LoginSignup = () => {
     const initialUserState = {
         id: null,
+        username: "",
         email: "",
         password: ""
       };
@@ -88,7 +89,7 @@ const LoginSignup = () => {
 
     return (
     <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div id="main-container" className="">
         <div className="container login-container">
             <div className="row">
@@ -96,13 +97,13 @@ const LoginSignup = () => {
                     <h3>Login</h3>
                     <form>
                         <div className="form-group">
-                            <input type="text" id="email-login" className="form-control" placeholder="Your Email *" />
+                            <input type="text" id="email-login" className="input input-email" placeholder="Your Email *" />
                         </div>
                         <div className="form-group">
-                            <input type="password" id="password-login" className="form-control" placeholder="Your Password *" />
+                            <input type="password" id="password-login" className="input input-password" placeholder="Your Password *" />
                         </div>
                         <div className="form-group">
-                            <input id="loginpagebutton" type="submit" className="btnSubmit" value="Login" />
+                            <input id="loginpagebutton" type="submit" className="submit-button" value="Login" />
                             {/* <input id="loginpagebutton" type="submit" onClick={handleLogin} className="btnSubmit" value="Login" /> */}
                         </div>
                     </form>
@@ -123,7 +124,7 @@ const LoginSignup = () => {
                             <input 
                             type="text" 
                             id="username" 
-                            className="form-control" 
+                            className="input name" 
                             validations={[required]}
                             required
                             value={user.username}
@@ -135,7 +136,7 @@ const LoginSignup = () => {
                             <input 
                             type="text" 
                             id="email" 
-                            className="form-control" 
+                            className="input input-email" 
                             validations={[required]}
                             required
                             value={user.email}
@@ -147,7 +148,7 @@ const LoginSignup = () => {
                             <input 
                             type="password" 
                             id="password" 
-                            className="form-control" 
+                            className="input input-password" 
                             validations={[required]}
                             required
                             value={user.password}

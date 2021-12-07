@@ -3,52 +3,67 @@ import '../style/login.scss';
 import { FaUser } from 'react-icons/fa';
 import UserDataService from "../services/user.service.js";
 
-
+const required = value => {
+    if (!value) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
+        );
+    }
+};
 
 export default function Login() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('')
-    // const [wrongEmail, setWrongEmail] = useState(false)
-    // const [wrongPassword, setWrongPassword] = useState(false)
+    const initialUserState = {
+        id: null,
+        username:"",
+        email: "",
+        password: ""
+    };
+    const [user, setUser] = useState(initialUserState);
+    // const [submitted, setSubmitted] = useState(false);
 
-    const signUser = () => {
-        let data = {
-          email: email,
-          password: password,
-          username: name
-        };
-        console.log(data)
-        UserDataService.create(data)
-            .then(response => {
-                console.log(response.data)
-            })
-            .catch(e => {
-                console.log(e);
-            })
-    }
+    const handleInputChange = event => {
+        const { name, value } = event.target;
+        setUser({ ...user, [name]: value });
+    };
 
-    const loginUSer = () => {
-        let data = {
-            email: email,
-            password: password,
-        }
-        console.log(data)
-        UserDataService.login(data)
-        .then(response => {
-            console.log(response.data)
-        })
-
-
-
-    }
-    
 
     const [toggle, setToggle] = useState('');
     const toggleClass = () => {
         setToggle(!toggle)
     }
+
+    const saveUser = () => {
+        var data = {
+            username: user.username,
+            email: user.email,
+            password: user.password
+        };
+        UserDataService.create(data)
+            .then(response => {
+                setUser({
+                    id: response.data.id,
+                    username: response.data.username,
+                    email: response.data.email,
+                    password: response.data.password
+                });
+             //   setSubmitted(true);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+            // .then(window.location.reload(false));
+    };
+
+    const newUser = () => {
+        setUser(initialUserState);
+      //  setSubmitted(false);
+    };
+
+
 
     return (
         <div className="main-container">
@@ -80,39 +95,70 @@ export default function Login() {
                         </div>
                         {/* LOGIN */}
                         <div className={toggle ? "toggle-login-container-hidden" : "toggle-login-container"}>
-                            
-                            <div className="input-container">
-                                <div className="title-container" >login</div>
-                                <input className="input input-email" type="text" placeholder="email" label="email"   onChange={(e) => {
-                                setEmail(e.target.value)
-                            }}></input>
-                                <input className="input input-password" type="password" placeholder="password" label="password"   onChange={(e) => {
-                                setPassword(e.target.value)
-                            }}></input>
-                            </div>
 
-                            <button className="submit-button" onClick={loginUSer} >submit</button>
+                            <form className="input-container">
+                                <div className="title-container" >login</div>
+                                <div className="form-group">
+                                    <input type="text" id="email-login" className="input input-email" placeholder="Your Email *" />
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" id="password-login" className="input input-password" placeholder="Your Password *" />
+                                </div>
+                                <div className="form-group">
+                                    <input id="loginpagebutton" type="submit" className="submit-button" value="Login" />
+                                </div>
+                            </form>
+
+
 
                             <span className="forgot-pw-question">forgot your password ?</span>
 
                         </div>
-                          {/* SIGNUP */}
+                        {/* SIGNUP */}
                         <div className={toggle ? "toggle-signup-container" : "toggle-signup-container-hidden"}>
 
-                            <div className="input-container">
+                            <form className="input-container">
                                 <div className="title-container">signup</div>
-                                <input className="input name" type="text" placeholder="name" label="name" onChange={(e) => {
-                                setName(e.target.value)
-                            }}></input>
-                                <input className="input input-email" type="text" placeholder="email" label="email"   onChange={(e) => {
-                                setEmail(e.target.value)
-                            }}></input>
-                                <input className="input input-password" type="password" placeholder="password" label="password"   onChange={(e) => {
-                                setPassword(e.target.value)
-                            }}></input>
-                            </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        id="username"
+                                        className="input name"
+                                        validations={[required]}
+                                        required
+                                        value={user.username}
+                                        onChange={handleInputChange}
+                                        name="username"
+                                        placeholder="Your Username *" />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        id="email"
+                                        className="input input-email"
+                                        validations={[required]}
+                                        required
+                                        value={user.email}
+                                        onChange={handleInputChange}
+                                        name="email"
+                                        placeholder="Your Email *" />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        className="input input-password"
+                                        validations={[required]}
+                                        required
+                                        value={user.password}
+                                        onChange={handleInputChange}
+                                        name="password"
+                                        placeholder="Your Password *" />
+                                </div>
+                                <button className="submit-button" onClick={saveUser}>submit</button>
 
-                            <button className="submit-button" onClick={signUser}>submit</button>
+                            </form>
+
 
                         </div>
 
@@ -122,6 +168,6 @@ export default function Login() {
 
 
             </div>
-        </div>
+        </div >
     )
 }

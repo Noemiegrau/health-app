@@ -71,7 +71,6 @@ exports.create = (req, res) => {
           req.session.user_id = data.id;
           req.session.email = data.email;
           req.session.loggedIn = true; // IMPORTANT: THIS MEAN AFTER THE USER CREATES THEIR ACCOUNT THEY ARE AUTOMATICALLY CONSIDERED LOGGED IN
-    
           res.json(data);
         })
       })
