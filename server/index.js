@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 // const connection = require('./config/db.config');
 // const controllers = require('./controllers');
 // const session = require('express-session');
@@ -33,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static('./public'));
 
 const db = require("./models");
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
   });
 

@@ -6,7 +6,8 @@
   "dependencies": {
     "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
-    "react-router-dom": "^6.0.2"
+    "helmet": "^4.6.0",
+    "react-router-dom": "^6.0.0-beta.8"
   },
   "scripts": {
     "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
